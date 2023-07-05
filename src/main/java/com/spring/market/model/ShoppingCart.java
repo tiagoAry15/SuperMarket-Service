@@ -2,25 +2,23 @@ package com.spring.market.model;
 
 import java.util.List;
 
+import jakarta.persistence.*;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 
 @Entity
+@Table(name = "shopping_carts")
 public class ShoppingCart {
 
-	
-	@ManyToOne(cascade = CascadeType.ALL)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 	
 	@OneToMany(mappedBy = "carrinho")
-    private List<Item> items;
+    private List<ItemCart> items;
 	
 	
 }

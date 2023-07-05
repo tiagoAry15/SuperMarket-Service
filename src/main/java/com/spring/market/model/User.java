@@ -1,11 +1,11 @@
 package com.spring.market.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User {
 
 	@Id
@@ -16,8 +16,10 @@ public class User {
 
 	private String email;
 	
-	private int telephone;
-	
+	private String telephone;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<ShoppingCart> carts;
 	public String getName() {
 		return name;
 	}
@@ -34,16 +36,23 @@ public class User {
 		this.email = email;
 	}
 
-	public int getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
-	public void setTelephone(int telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
 	public Long getId() {
 		return id;
 	}
-	
+
+	public List<ShoppingCart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<ShoppingCart> carts) {
+		this.carts = carts;
+	}
 }

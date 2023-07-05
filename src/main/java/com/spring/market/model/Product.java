@@ -1,22 +1,25 @@
 package com.spring.market.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
+import com.spring.market.enums.ProductType;
 @Entity
+@Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String nome;
+    private String name;
 
-    private String descricao;
+    private String description;
 
-    private double preco;
+    private double price;
+
+    @Enumerated(EnumType.STRING)
+    private ProductType type;
+
+
 
     // getters e setters
     public Long getId() {
@@ -27,28 +30,28 @@ public class Product {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getName() {
+        return name;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getPreco() {
-        return preco;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setPrice(double price) {
+        this.price = price;
     }
-
 }

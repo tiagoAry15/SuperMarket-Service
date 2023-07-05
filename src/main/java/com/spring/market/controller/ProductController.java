@@ -41,9 +41,9 @@ public class ProductController {
     public Product updateProduct(@PathVariable Long id, @RequestBody Product produto) {
         Product existingProduct = produtoRepository.findById(id).orElse(null);
         if (existingProduct != null) {
-            existingProduct.setNome(produto.getNome());
-            existingProduct.setDescricao(produto.getDescricao());
-            existingProduct.setPreco(produto.getPreco());
+            existingProduct.setName(produto.getName());
+            existingProduct.setDescription(produto.getDescription());
+            existingProduct.setPrice(produto.getPrice());
             return produtoRepository.save(existingProduct);
         } else {
             return null;
